@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class {{NAME}}Test extends TestCase
+{
+    /**
+     * A basic test {{NAME}}.
+     *
+     * @return void
+     */
+    public function testBasicTest()
+    {
+        $this->assertTrue(true);
+    }
+}

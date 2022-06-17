@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Common\Scopes;
+
+use App\Infrastructure\Contracts\Scope;
+use Illuminate\Database\Eloquent\Builder;
+
+class {{NAME}} implements Scope
+{
+    /**
+     * @param Builder $builder
+     * @param $value
+     * @return mixed
+     */
+    public function apply(Builder $builder, $value)
+    {
+        if (!in_array(strtolower($value), ['desc', 'asc'])) {
+            $value = 'desc';
+        }
+        return $builder->orderBy('created_at', $value);
+    }
+}

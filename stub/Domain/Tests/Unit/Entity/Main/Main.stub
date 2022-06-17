@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Unit\Entities;
+
+use Tests\TestCase;
+use ReflectionClass;
+use App\Domain\{{DOMAIN}}\Entities\{{NAME}};
+
+class {{NAME}}Test extends TestCase
+{
+    {{TESTCASES}}
+   
+    {{JWTMETHODS}}
+
+    {{SETUP}}
+}

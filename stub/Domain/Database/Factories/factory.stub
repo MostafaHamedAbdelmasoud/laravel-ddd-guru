@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Database\Factories;
+
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class {{ENTITY}}Factory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = {{ENTITY}}::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name,
+        ];
+    }
+}

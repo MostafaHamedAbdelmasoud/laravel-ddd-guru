@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Listeners\{{TYPE}};
+
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Domain\{{DOMAIN}}\Events\{{EVENT_NAME}};
+
+class {{NAME}}Listener implements ShouldQueue
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  {{EVENT_NAME}} $event
+     * @return void
+     */
+    public function handle({{EVENT_NAME}} $event)
+    {
+    }
+}

@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Common\Notifications\{{TYPE}};
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+
+class {{NAME}}Notification extends Notification implements ShouldQueue
+{
+    use Queueable;
+
+    /**
+     * Entity Instance.
+     *
+     * @var [type]
+     */
+    public $entity;
+
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
+    public function __construct($entity)
+    {
+        $this->entity = $entity;
+    }
+
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function via($notifiable)
+    {
+        return ['database', 'mail'];
+    }
+
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('Notifcation line.')
+                    //->action('View Entity', route('__view_name__.show', '_id_'))
+                    ->line('Thank you for using our application!');
+    }
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+    public function toArray($notifiable)
+    {
+        return [
+            'title' => 'Notififcation Title.',
+            'content' => 'You Have New Notification',
+            'entity' => [
+                'model' => '_ENTITY_',
+                'id' => '_ID_',
+                'url' => route('__view_name__.show', '_ID_'),
+                'data' => [],
+                'created_at' => date('Y-m-d H:i:s'),
+            ],
+        ];
+    }
+}

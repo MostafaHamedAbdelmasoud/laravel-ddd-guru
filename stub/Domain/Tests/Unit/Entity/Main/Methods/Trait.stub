@@ -1,0 +1,6 @@
+/** @test */
+public function it_should_has_{{TRAIT_LC}}_trait()
+{
+    ${{ENTITY_LC}} = new ReflectionClass($this->{{ENTITY_LC}});
+    $this->assertArrayHasKey("{{CONTENT}}", ${{ENTITY_LC}}->getTraits());
+}

@@ -1,0 +1,6 @@
+
+use Illuminate\Database\Eloquent\Model;
+$this->relationClass = new class extends Model
+{
+    use {{RealtionshipNameSpace}};
+};

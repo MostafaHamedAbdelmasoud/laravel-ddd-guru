@@ -1,0 +1,8 @@
+/** @test */
+public function it_should_{{METHOD-NAME}}()
+{
+    $class = new ReflectionClass($this->{{ENTITY_LC}});
+    ${{CONSTANT}} = $class->getProperty("{{CONSTANT}}");
+    ${{CONSTANT}}->setAccessible(true);
+    $this->assertEquals({{CONTENT}}, ${{CONSTANT}}->{{METHOD}});
+}

@@ -1,0 +1,19 @@
+ 
+    /** @test */
+    public function it_should_has_jwt_custom_claims_as_empty_array()
+    {
+        $this->assertEquals([], $this->user->getJWTCustomClaims());
+    }
+
+    /** @test */
+    public function it_should_has_jwt_identifier_as_null()
+    {
+        $this->assertNull($this->user->getJWTIdentifier());
+    }
+
+    /** @test */
+    public function it_should_implements_jwt_subject()
+    {
+        $user = new ReflectionClass($this->user);
+        $this->assertArrayHasKey("Tymon\JWTAuth\Contracts\JWTSubject", $user->getInterfaces());
+    }

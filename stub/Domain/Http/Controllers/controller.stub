@@ -1,0 +1,205 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Http\Controllers;
+
+use App\Infrastructure\Http\AbstractControllers\BaseController as Controller;
+use App\Domain\{{DOMAIN}}\Http\Requests\{{NAME_REQUEST}}\{{NAME_REQUEST_STORE}};
+use App\Domain\{{DOMAIN}}\Http\Requests\{{NAME_REQUEST}}\{{NAME_REQUEST_UPDATE}};
+use App\Domain\{{DOMAIN}}\Repositories\Contracts\{{NAME_REPO}};
+use Illuminate\Http\Request;
+use MostafaHamed\DDD\Traits\Responder;
+use App\Domain\{{DOMAIN}}\Entities\{{NAME}};
+use App\Domain\{{DOMAIN}}\Http\Resources\{{API_RESOURCE_NAME}}\{{API_RESOURCE_NAME}}ResourceCollection;
+use App\Domain\{{DOMAIN}}\Http\Resources\{{API_RESOURCE_NAME}}\{{API_RESOURCE_NAME}}Resource;
+
+class {{NAME}}Controller extends Controller
+{
+    use Responder;
+
+    /**
+     * @var {{NAME_REPO}}
+     */
+    protected ${{NAME_REPO_VAR}};
+
+    /**
+     * View Path
+     *
+     * @var string
+     */
+    protected $viewPath = '{{VIEW_RESOURCE}}';
+
+    /**
+     * Resource Route.
+     *
+     * @var string
+     */
+    protected $resourceRoute = '{{RESOURCE_ROUTE_NAME}}';
+
+    /**
+     * Domain Alias.
+     *
+     * @var string
+     */
+    protected $domainAlias = '{{DOMAIN_ALIAS}}';
+
+
+    /**
+     * @param {{NAME_REPO}} ${{NAME_REPO_VAR}}
+     */
+    public function __construct({{NAME_REPO}} ${{NAME_REPO_VAR}})
+    {
+        $this->{{NAME_REPO_VAR}} = ${{NAME_REPO_VAR}};
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $index = $this->{{NAME_REPO_VAR}}->spatie()->all();
+
+        $this->setData('title', __('main.show-all') . ' ' . __('main.{{VIEW_RESOURCE}}'));
+
+        $this->setData('alias', $this->domainAlias);
+
+        $this->setData('data', $index);
+
+        $this->addView("{$this->domainAlias}::{$this->viewPath}.index");
+
+        $this->useCollection({{API_RESOURCE_NAME}}ResourceCollection::class,'data');
+
+        return $this->response();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->setData('title', __('main.add') . ' ' . __('main.{{VIEW_RESOURCE}}'), 'web');
+
+        $this->setData('alias', $this->domainAlias,'web');
+
+        $this->addView("{$this->domainAlias}::{$this->viewPath}.create");
+
+        $this->setApiResponse(fn()=> response()->json(['create_your_own_form'=>true]));
+
+        return $this->response();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{NAME_REQUEST_STORE}} $request)
+    {
+        $store = $this->{{NAME_REPO_VAR}}->create($request->validated());
+
+        if($store){
+            $this->setData('data', $store);
+
+            $this->redirectRoute("{$this->resourceRoute}.show",[$store->id]);
+            $this->useCollection({{API_RESOURCE_NAME}}Resource::class, 'data');
+        }else{
+            $this->redirectBack();
+            $this->setApiResponse(fn()=> response()->json(['created'=>false]));
+        }
+
+        return $this->response();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show({{NAME}} ${{VIEW_RESOURCE}})
+    {
+        $this->setData('title', __('main.show') . ' ' . __('main.{{VIEW_RESOURCE}}') . ' : ' . ${{VIEW_RESOURCE}}->id, 'web');
+
+        $this->setData('alias', $this->domainAlias,'web');
+
+        $this->setData('show', ${{VIEW_RESOURCE}});
+
+        $this->addView("{$this->domainAlias}::{$this->viewPath}.show");
+
+        $this->useCollection({{API_RESOURCE_NAME}}Resource::class,'show');
+
+        return $this->response();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit({{NAME}} ${{VIEW_RESOURCE}})
+    {
+        $this->setData('title', __('main.edit') . ' ' . __('main.{{VIEW_RESOURCE}}') . ' : ' . ${{VIEW_RESOURCE}}->id, 'web');
+
+        $this->setData('alias', $this->domainAlias,'web');
+
+        $this->setData('edit', ${{VIEW_RESOURCE}});
+
+        $this->addView("{$this->domainAlias}::{$this->viewPath}.edit");
+
+        $this->useCollection({{API_RESOURCE_NAME}}Resource::class,'edit');
+
+        return $this->response();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{NAME_REQUEST_UPDATE}} $request, ${{VIEW_RESOURCE}})
+    {
+        $update = $this->{{NAME_REPO_VAR}}->update($request->validated(), ${{VIEW_RESOURCE}});
+
+        if($update){
+            $this->redirectRoute("{$this->resourceRoute}.show",[$update->id]);
+            $this->setData('data', $update);
+            $this->useCollection({{API_RESOURCE_NAME}}Resource::class, 'data');
+        }else{
+            $this->redirectBack();
+            $this->setApiResponse(fn()=>response()->json(['updated'=>false],422));
+        }
+
+        return $this->response();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $ids = request()->get('ids',[$id]);
+
+        $delete = $this->{{NAME_REPO_VAR}}->destroy($ids);
+
+        if($delete){
+            $this->redirectRoute("{$this->resourceRoute}.index");
+            $this->setApiResponse(fn()=>response()->json(['deleted'=>true],200));
+        }else{
+            $this->redirectBack();
+            $this->setApiResponse(fn()=>response()->json(['updated'=>false],422));
+        }
+
+        return $this->response();
+    }
+
+}

@@ -1,0 +1,4 @@
+input {{ENTITY}}Attributes {
+    id:ID
+    name:String!
+}

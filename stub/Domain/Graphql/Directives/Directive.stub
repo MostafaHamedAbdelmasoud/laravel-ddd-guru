@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Graphql\Directives;
+
+use Nuwave\Lighthouse\Schema\Directives\BaseDirective;
+use Nuwave\Lighthouse\Support\Contracts\ArgTransformerDirective;
+
+class {{NAME}}Directive extends BaseDirective implements ArgTransformerDirective
+{
+
+    public function name():string{
+        return '{{NAME_LC}}';
+    }
+
+    public function transform($argumentValue): string
+    {
+        return '{{NAME_LC}} '.$argumentValue;
+    }
+
+}

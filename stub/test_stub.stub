@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Domain\Lead\Tests\Unit\Entities;
+
+use Tests\TestCase;
+use ReflectionClass;
+use App\Domain\Lead\Entities\Lead;
+
+class LeadTest extends TestCase
+{
+    /** @test */
+    public function it_should_has_lead_attributes()
+    {
+        $lead = new ReflectionClass($this->lead);
+
+        $this->assertArrayHasKey("App\Domain\Lead\Entities\Traits\CustomAttributes\LeadAttributes", $lead->getTraits());
+    }
+
+    /** @test */
+    public function it_should_has_lead_relations_trait()
+    {
+        $lead = new ReflectionClass($this->lead);
+        $this->assertArrayHasKey("App\Domain\Lead\Entities\Traits\Relations\LeadRelations", $lead->getTraits());
+    }
+
+    /** @test */
+    public function it_should_has_leads_table()
+    {
+        $this->assertEquals('leads', $this->lead->getTable());
+    }
+
+    /** @test */
+    public function it_should_has_title_name_agent_id_creator_id_type_state_gender_religion_birth_date_district_street_building_lead_source_id_type_identification_avatars_as_fillables()
+    {
+        $this->assertEquals([
+            'name',
+            'agent_id',
+            'creator_id',
+            'type',
+            'state',
+            'gender',
+            'religion',
+            'birth_date',
+            'district',
+            'street_building',
+            'lead_source',
+            'id_type',
+            'identification',
+            'avatars',
+            'nationality',
+            'floor'
+        ], $this->lead->getFillable());
+    }
+
+    /** @test */
+    public function it_should_log_all_attributes_of_lead()
+    {
+        $class = new ReflectionClass($this->lead);
+        $table = $class->getProperty('logAttributes');
+        $table->setAccessible(true);
+        $this->assertEquals(['*'], $table->getValue($this->lead));
+    }
+
+    /** @test */
+    public function it_should_log_attributes_with_name_of_lead()
+    {
+        $class = new ReflectionClass($this->lead);
+        $table = $class->getProperty('logName');
+        $table->setAccessible(true);
+        $this->assertEquals('Lead', $table->getValue($this->lead));
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->lead = app(Lead::class);
+    }
+}

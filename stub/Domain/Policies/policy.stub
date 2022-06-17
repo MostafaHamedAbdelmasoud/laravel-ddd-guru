@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Policies;
+
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+use App\Domain\User\Entities\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class {{NAME}}
+{
+    use HandlesAuthorization;
+
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @return mixed
+     */
+    public function viewAny(User $user)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return mixed
+     */
+    public function view(User $user, {{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return mixed
+     */
+    public function update(User $user, {{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return mixed
+     */
+    public function delete(User $user, {{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return mixed
+     */
+    public function restore(User $user, {{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\Domain\User\Entities\User  $user
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return mixed
+     */
+    public function forceDelete(User $user, {{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+}

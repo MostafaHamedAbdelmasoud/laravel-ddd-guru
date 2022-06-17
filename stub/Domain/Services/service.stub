@@ -1,0 +1,8 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Services;
+
+class {{NAME}}Service
+{
+    public function __construct() {}
+}

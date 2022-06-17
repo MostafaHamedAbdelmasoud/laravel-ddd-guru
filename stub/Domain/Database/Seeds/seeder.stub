@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Database\Seeds;
+
+use Illuminate\Database\Seeder;
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+
+class {{NAME}}TableSeeder extends Seeder
+{
+
+    /**
+     * Auto generated seed file
+     *
+     * @return void
+     */
+    public function run()
+    {
+        {{ENTITY}}::factory({{COUNT}})->times(50);
+    }
+}

@@ -1,0 +1,163 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Feature;
+
+use Tests\TestCase;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
+
+class {{NAME}}Test extends TestCase
+{
+    use MakesGraphQLRequests,RefreshDatabase;
+
+    /**
+     * test Query All {{ENTITY}} Test.
+     *
+     * @return void
+     */
+    public function testQueryAll{{ENTITY}}Test()
+    {
+        ${{ENTITY_LC}} = factory({{ENTITY}}::class)->create();
+
+        $response = $this->graphQL('
+        {
+            {{ENTITY_PLURAL}} {
+                data{
+                    id
+                }
+            }
+        }
+        ');
+
+        $response->assertJson([
+            'data'=>[
+                '{{ENTITY_PLURAL}}'=>[
+                    'data'=>[
+                        [
+                            'id'=>"${{ENTITY_LC}}->id"
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    
+    /**
+     * test Query User Test.
+     *
+     * @return void
+     */
+    public function testQuery{{ENTITY}}Test()
+    {
+        ${{ENTITY_LC}} = factory({{ENTITY}}::class)->create();
+
+        
+        $response = $this->graphQL('
+            query {{ENTITY_LC}}($id:ID!){
+                {{ENTITY_LC}}(id:$id) {
+                    id
+                }
+            }
+        ',['id'=>${{ENTITY_LC}}->id]);
+
+        $response->assertJson([
+            'data'=>[
+                '{{ENTITY_LC}}'=>[
+                    'id'=>"${{ENTITY_LC}}->id"
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * test Create User Test.
+     *
+     * @return void
+     */
+    public function testCreate{{ENTITY}}Test()
+    {
+        ${{ENTITY_LC}} = factory({{ENTITY}}::class)->make();
+
+        $response = $this->graphQL('
+            mutation create{{ENTITY}}($input: {{ENTITY}}Attributes!) {
+                create{{ENTITY}}(input: $input) {
+                    name
+                }
+            }
+        ',['input'=>[
+            'name'=>$user->name,
+        ]]);
+
+        $response->assertJson([
+            'data'=>[
+                'create{{ENTITY}}'=>[
+                    'name'=>"${{ENTITY_LC}}->name"
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * test Update User Test.
+     *
+     * @return void
+     */
+    public function testUpdate{{ENTITY}}Test()
+    {
+        ${{ENTITY_LC}} = factory({{ENTITY}}::class)->create();
+
+        $response = $this->graphQL('
+            mutation update{{ENTITY}}($input: {{ENTITY}}Attributes!) {
+                update{{ENTITY}}(input: $input) {
+                    name
+                }
+            }
+        ',[
+            'input'=>[
+                'id'=>${{ENTITY_LC}}->id,
+                'name'=>${{ENTITY_LC}}->name.'-mod',
+            ]
+        ]);
+
+        $response->assertJson([
+            'data'=>[
+                'update{{ENTITY}}'=>[
+                    'name'=>"${{ENTITY_LC}}->name-mod"
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * test Delete {{ENTITY}} Test.
+     *
+     * @return void
+     */
+    public function testDelete{{ENTITY}}Test()
+    {
+        ${{ENTITY_LC}} = factory({{ENTITY}}::class)->create();
+
+        $response = $this->graphQL('
+            mutation delete{{ENTITY}}($ids:[ID!]!) {
+                delete{{ENTITY}}(ids: $ids) {
+                    id
+                }
+            }
+        ',[
+            'ids'=>[${{ENTITY_LC}}->id],
+        ]);
+
+        $response->assertJson([
+            'data'=>[
+                'delete{{ENTITY}}'=>[
+                    [
+                        'id'=>"${{ENTITY_LC}}->id"
+                    ]
+                ]
+            ]
+        ]);
+    }
+}

@@ -1,0 +1,17 @@
+/** @test */
+public function it_should_belongs_to_{{RELATED_MODEL}}()
+{
+    $this->assertInstanceOf(BelongsTo::class, $this->model->{{RELATED_MODEL}}());
+}
+
+/** @test */
+public function it_should_belongs_to_{{RELATED_MODEL}}_with_{{ForeignKeyName}}_as_foreign_key_name()
+{
+    $this->assertEquals('{{ForeignKeyName}}', $this->model->{{RELATED_MODEL}}()->getForeignKeyName());
+}
+
+/** @test */
+public function it_should_belongs_to_{{RELATED_MODEL}}_with_{{OwnerKeyName}}_as_owner_key_name()
+{
+    $this->assertEquals('{{OwnerKeyName}}', $this->model->{{RELATED_MODEL}}()->getOwnerKeyName());
+}

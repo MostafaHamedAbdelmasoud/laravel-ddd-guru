@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class {{FILE_ACTION}}{{NAME}}Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::{{CREATE_OR_TABLE}}('{{TABLE_NAME}}', function (Blueprint $table) {
+            {{TABLE_COLUMNS}}
+        });
+    }
+    
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        {{DOWN}}
+    }
+}

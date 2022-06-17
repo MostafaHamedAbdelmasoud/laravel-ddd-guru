@@ -1,0 +1,5 @@
+/** @test */
+public function it_should_{{CONSTANT}}()
+{
+    $this->assertEquals({{CONTENT}}, $this->{{ENTITY_LC}}->{{METHOD}});
+}

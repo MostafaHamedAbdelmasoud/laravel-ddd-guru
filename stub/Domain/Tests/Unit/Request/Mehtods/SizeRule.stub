@@ -1,0 +1,9 @@
+/** @test */
+public function it_shouldnt_pass_if_{{key}}_exceeds_255_characters()
+{
+    $attributes = [
+        '{{key}}' => Str::random(500),
+    ];
+    $validator = Validator::make($attributes, $this->{{REQUEST}}->rules());
+    $this->assertArrayHasKey("{{key}}", $validator->getMessageBag()->getMessages());
+}

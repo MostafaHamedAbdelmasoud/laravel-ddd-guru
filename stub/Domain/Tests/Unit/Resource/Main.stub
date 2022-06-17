@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Unit\Resources;
+
+use Tests\TestCase;
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+use App\Domain\{{DOMAIN}}\Entities\PasswordReset;
+use App\Domain\{{DOMAIN}}\Http\Resources\{{ENTITY}}\{{RESOURCE}};
+
+class {{RESOURCE}}Test extends TestCase
+{
+    {{TESTCASES}}
+
+    {{SETUP}}
+}

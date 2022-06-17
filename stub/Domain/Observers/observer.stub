@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Observers;
+
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+
+class {{ENTITY}}Observer
+{
+    /**
+     * Handle the {{ENTITY_LC}} "created" event.
+     *
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return void
+     */
+    public function created({{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Handle the {{ENTITY_LC}} "updated" event.
+     *
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return void
+     */
+    public function updated({{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Handle the {{ENTITY_LC}} "deleted" event.
+     *
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return void
+     */
+    public function deleted({{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Handle the {{ENTITY_LC}} "restored" event.
+     *
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return void
+     */
+    public function restored({{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+
+    /**
+     * Handle the {{ENTITY_LC}} "force deleted" event.
+     *
+     * @param  \App\Domain\{{DOMAIN}}\Entities\{{ENTITY}}  ${{ENTITY_LC}}
+     * @return void
+     */
+    public function forceDeleted({{ENTITY}} ${{ENTITY_LC}})
+    {
+        //
+    }
+}

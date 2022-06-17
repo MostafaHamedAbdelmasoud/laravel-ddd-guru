@@ -1,0 +1,20 @@
+
+/** @test */
+    public function it_should_{{RELATION_CC}}_{{RELATED_MODEL}}()
+    {
+        $this->assertInstanceOf({{RELATION}}::class, $this->model->{{RELATED_MODEL}}());
+    }
+
+    /** @test */
+    public function it_should_{{RELATION_CC}}_{{RELATED_MODEL}}_relationship_with_{{LocalKeyName}}_as_local_key()
+    {
+        $this->assertEquals('{{LocalKeyName}}', $this->model->{{RELATED_MODEL}}()->getLocalKeyName());
+
+    }
+
+    /** @test */
+    public function it_should_{{RELATION_CC}}_{{RELATED_MODEL}}_relationship_with_{{ForeignKeyName}}_as_foreign_key()
+    {
+        $this->assertEquals('{{ForeignKeyName}}', $this->model->{{RELATED_MODEL}}()->getForeignKeyName());
+
+    }

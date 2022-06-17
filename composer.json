@@ -1,0 +1,41 @@
+{
+    "name": "mostafahamed/laravel-guru-ddd",
+    "description": "DDD Laravel-structure-generator",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Mostafa Hamed",
+            "email": "mostafa.hamed1944@gmail.com"
+        }
+    ],
+    "require": {
+        "prettus/l5-repository": "dev-master",
+        "spatie/laravel-activitylog": "dev-main",
+        "spatie/laravel-query-builder": "dev-main",
+        "laravel/ui": "4.x-dev",
+        "livewire/livewire": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "MostafaHamed\\DDD\\":"src/",
+            "App\\":"app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MostafaHamed\\DDD\\":"src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel":{
+            "providers":[
+                "MostafaHamed\\DDD\\DomainDriverDesignServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.5.0"
+    }
+}

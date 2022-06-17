@@ -1,0 +1,9 @@
+/** @test */
+public function it_should_return_resource_with_{{RELATED_MODEL}}_key_when_relationship_loaded()
+{
+    $this->user->setRelation(
+        '{{RELATED_MODEL}}',
+        factory({{ENTITY}}::class)->make()
+    );
+    $this->assertArrayHasKey('{{RELATED_MODEL}}', ${{RSOURCE_CC}}->resolve());
+}

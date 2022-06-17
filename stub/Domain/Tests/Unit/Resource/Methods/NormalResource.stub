@@ -1,0 +1,6 @@
+/** @test */
+public function it_should_return_normal_resource_without_any_relationships_loaded()
+{
+    $userResource = new {{RESOURCE}}($this->{{ENTITY_LC}});
+    $this->assertEquals(["{{CONTENT}}"], array_keys(${{RSOURCE_CC}}->resolve()));
+}

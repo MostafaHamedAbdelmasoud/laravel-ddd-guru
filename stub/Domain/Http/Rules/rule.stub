@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Http\Rules;
+
+use Illuminate\Contracts\Validation\Rule;
+
+class {{NAME}}Rule implements Rule
+{
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function passes($attribute, $value)
+    {
+
+        if (true) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'The :attribute must be uppercase.';
+    }
+}

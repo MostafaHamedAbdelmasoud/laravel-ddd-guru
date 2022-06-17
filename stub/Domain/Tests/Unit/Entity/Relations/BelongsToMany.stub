@@ -1,0 +1,23 @@
+/** @test */
+public function it_should_belongs_to_many_{{RELATED_MODEL}}()
+{
+    $this->assertInstanceOf(BelongsToMany::class, $this->model->{{RELATED_MODEL}}());
+}
+
+/** @test */
+public function it_should_belongs_to_many_{{RELATED_MODEL}}_with_table_name_{{PIVOT_TABLE}}()
+{
+    $this->assertEquals('{{PIVOT_TABLE}}', $this->model->{{RELATED_MODEL}}()->getTable());
+}
+
+/** @test */
+public function it_should_belongs_to_many_{{RELATED_MODEL}}_with_{{ForeignPivotKeyName}}_as_foreign_pivot_key_name()
+{
+    $this->assertEquals('{{ForeignPivotKeyName}}', $this->model->{{RELATED_MODEL}}()->getForeignPivotKeyName());
+}
+
+/** @test */
+public function it_should_belongs_to_many_{{RELATED_MODEL}}_with_{{RelatedPivotKeyName}}_as_related_pivot_key_name()
+{
+    $this->assertEquals('{{RelatedPivotKeyName}}', $this->model->{{RELATED_MODEL}}()->getRelatedPivotKeyName());
+}

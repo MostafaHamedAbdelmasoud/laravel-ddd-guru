@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Http\Requests\{{ENTITY}};
+
+use App\Infrastructure\Http\AbstractRequests\BaseRequest as FormRequest;
+
+class {{ENTITY}}StoreFormRequest extends FormRequest
+{
+    /**
+     * Determine if the {{ENTITY}} is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $rules = [
+            'name'        => ['required', 'string', 'max:255'],
+        ];
+        return $rules;
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name'        =>  __('main.name'),
+        ];
+    }
+}

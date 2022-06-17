@@ -1,0 +1,10 @@
+public function setUp(): void
+{
+    parent::setUp();
+
+    $this->{{ENTITY_LC}} = factory({{ENTITY}}::class)->make([
+        'id' => 1,
+    ]);
+    
+    $this->{{RESOURCE_CC}} = new {{RESOURCE}}($this->{{ENTITY_LC}});
+}

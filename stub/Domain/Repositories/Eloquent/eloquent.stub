@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Repositories\Eloquent;
+
+use App\Domain\{{DOMAIN}}\Repositories\Contracts\{{NAME}}Repository;
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+use App\Infrastructure\AbstractRepositories\EloquentRepository;
+
+/**
+ * Class {{NAME}}RepositoryEloquent.
+ *
+ * @package namespace App\Repositories;
+ */
+class {{NAME}}RepositoryEloquent extends EloquentRepository implements {{NAME}}Repository
+{
+    
+    /**
+     * Specify Fields
+     *
+     * @return string
+     */
+    protected $allowedFields = [
+        ###allowedFields###
+    	###\allowedFields###
+    ];
+
+    /**
+     * Include Relationships
+     *
+     * @return string
+     */
+    protected $allowedIncludes = [
+        ###allowedIncludes###
+    	###\allowedIncludes###
+    ];
+
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return {{ENTITY}}::class;
+    }
+    
+    /**
+     * Specify Model Relationships
+     *
+     * @return string
+     */
+    public function relations()
+    {
+        return [
+            ###allowedRelations###
+            ###\allowedRelations###
+        ];
+    }
+}

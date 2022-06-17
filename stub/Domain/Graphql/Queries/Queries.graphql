@@ -1,0 +1,4 @@
+extend type Query{
+    {{ENTITY_PLURARL}}:[{{ENTITY}}!]! @paginate(defaultCount:10)
+    {{ENTITY_LC}}(id:ID! @eq):{{ENTITY}} @find
+}

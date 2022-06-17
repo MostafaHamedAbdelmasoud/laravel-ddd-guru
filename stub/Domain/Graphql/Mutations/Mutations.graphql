@@ -1,0 +1,5 @@
+extend type Mutation{
+    create{{ENTITY}}(input:{{ENTITY}}Attributes! @spread):{{ENTITY}}! @create
+    update{{ENTITY}}(input:{{ENTITY}}Attributes! @spread):{{ENTITY}}! @update
+    delete{{ENTITY}}(ids:[ID!]!):[{{ENTITY}}!]! @delete
+}

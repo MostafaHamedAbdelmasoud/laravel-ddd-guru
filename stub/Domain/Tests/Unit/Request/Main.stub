@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Unit\Requests;
+
+use Validator;
+use Tests\TestCase;
+use App\Domain\{{DOMAIN}}\Http\Requests\{{REQUEST}};
+
+class {{REQUEST}}Test extends TestCase
+{
+    /** @test */
+    public function it_should_let_user_perform_request()
+    {
+        $this->assertTrue($this->{{REQUEST}}->authorize());
+    }
+
+    /** @test */
+    public function it_shouldnt_pass_if_date_isnt_passed()
+    {
+        $attributes = [];
+        $validator = Validator::make($attributes, $this->meetingStoreFormRequest->rules());
+        $this->assertArrayHasKey("date", $validator->getMessageBag()->getMessages());
+    }
+
+    {{TESTCASES}}
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->{{REQUEST_LC}} = app({{REQUEST}}::class);
+    }
+}

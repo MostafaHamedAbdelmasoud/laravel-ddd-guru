@@ -1,0 +1,46 @@
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+}
+
+type AuthPayload {
+    access_token: String
+    refresh_token: String
+    expires_in: Int
+    token_type: String
+    user: User
+}
+
+type RefreshTokenPayload {
+    access_token: String!
+    refresh_token: String!
+    expires_in: Int!
+    token_type: String!
+}
+
+type LogoutResponse {
+    status: String!
+    message: String
+}
+
+type ForgotPasswordResponse {
+    status: String!
+    message: String
+}
+
+type RegisterResponse {
+    tokens: AuthPayload
+    status: RegisterStatuses!
+}
+
+type UpdatePasswordResponse {
+    status: String!
+    message: String
+}
+
+enum RegisterStatuses {
+    MUST_VERIFY_EMAIL
+    SUCCESS
+}

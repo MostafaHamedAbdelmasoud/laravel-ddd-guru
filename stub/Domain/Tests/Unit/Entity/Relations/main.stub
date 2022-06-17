@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Unit\Entities\Relations;
+
+use Tests\TestCase;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Domain\{{DOMAIN}}\Entities\Traits\Relations\{{Relation}};
+
+class {{Relation}}Test extends TestCase
+{
+    {{TESTCASES}}
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->model = new class extends Model
+        {use {{Relation}};};
+    }
+}

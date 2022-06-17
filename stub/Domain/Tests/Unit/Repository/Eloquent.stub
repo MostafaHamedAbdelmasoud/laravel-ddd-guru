@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Tests\Unit\Repositories\Eloquent;
+
+use Tests\TestCase;
+use ReflectionClass;
+use App\Domain\{{DOMAIN}}\Entities\{{ENTITY}};
+use App\Domain\{{DOMAIN}}\Repositories\Eloquent\{{REPOSITORY}};
+
+class {{REPOSITORY}}Test extends TestCase
+{
+    /** @test */
+    public function it_should_implment_{{ENTITY_LC}}_repository_interface()
+    {
+        $reflectedClass = new ReflectionClass($this->{{ENTITY_LC}}Repository);
+        $this->assertArrayHasKey("App\Domain\{{DOMAIN}}\Repositories\Contracts\{{ENTITY}}Repository", $reflectedClass->getInterfaces());
+    }
+
+    /** @test */
+    public function it_should_return_{{ENTITY_LC}}_model()
+    {
+        $this->assertEquals({{ENTITY}}::class, $this->{{ENTITY_LC}}Repository->model());
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->{{ENTITY_LC}}Repository = app({{REPOSITORY}}::class);
+    }
+}

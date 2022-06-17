@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Domain\{{DOMAIN}}\Entities;
+
+use App\Infrastructure\AbstractModels\BaseModel as Model;
+use App\Domain\{{DOMAIN}}\Entities\Traits\Relations\{{NAME}}Relations;
+use App\Domain\{{DOMAIN}}\Entities\Traits\CustomAttributes\{{NAME}}Attributes;
+use App\Domain\{{DOMAIN}}\Repositories\Contracts\{{NAME}}Repository;
+
+class {{NAME}} extends Model
+{
+    use {{NAME}}Relations, {{NAME}}Attributes;
+
+    /**
+     * @var array
+     */
+    public static $logAttributes = ["*"];
+
+    /**
+     * The attributes that are going to be logged.
+     *
+     * @var array
+     */
+    protected static $logName = '{{NAME}}';
+
+    /**
+     * define belongsTo relations.
+     *
+     * @var array
+     */
+    private $belongsTo = [];
+
+    /**
+     * define hasMany relations.
+     *
+     * @var array
+     */
+    private $hasMany = [];
+
+    /**
+     * define belongsToMany relations.
+     *
+     * @var array
+     */
+    private $belongsToMany = [];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name'
+    ];
+
+    /**
+     * The table name.
+     *
+     * @var array
+     */
+    protected $table = "{{TABLE}}";
+
+    /**
+     * Holds Repository Related to current Model.
+     *
+     * @var array
+     */
+    protected $routeRepoBinding = {{NAME}}Repository::class;
+}
